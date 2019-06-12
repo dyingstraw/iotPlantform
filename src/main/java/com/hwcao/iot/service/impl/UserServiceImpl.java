@@ -2,7 +2,7 @@ package com.hwcao.iot.service.impl;
 
 import com.hwcao.iot.dao.user.UserDao;
 import com.hwcao.iot.service.UserService;
-import dto.UserDTO;
+import com.hwcao.iot.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

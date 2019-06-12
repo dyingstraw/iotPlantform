@@ -1,4 +1,4 @@
-package dto;
+package com.hwcao.iot.dto;
 
 import lombok.Data;
 

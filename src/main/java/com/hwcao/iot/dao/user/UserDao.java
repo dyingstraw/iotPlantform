@@ -1,7 +1,6 @@
 package com.hwcao.iot.dao.user;
 
-import com.hwcao.iot.entity.user.User;
-import dto.UserDTO;
+import com.hwcao.iot.dto.UserDTO;
 import org.springframework.stereotype.Component;
 
 /**

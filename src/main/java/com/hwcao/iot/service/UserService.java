@@ -1,6 +1,6 @@
 package com.hwcao.iot.service;
 
-import dto.UserDTO;
+import com.hwcao.iot.dto.UserDTO;
 
 /**
  * @program: iots_pringboot
