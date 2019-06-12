@@ -25,6 +25,8 @@ public class UserDao {
         user.setName("admin");
         user.setId(id);
         return user;
-
+    }
+    public boolean checkUser(String username,String password){
+        return true;
     }
 }
