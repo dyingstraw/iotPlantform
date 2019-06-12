@@ -19,4 +19,12 @@ public class UserDao {
         return user;
 
     }
+    public UserDTO getUserById(Long id){
+        UserDTO user = new UserDTO();
+        user.setDesc("admin");
+        user.setName("admin");
+        user.setId(id);
+        return user;
+
+    }
 }
