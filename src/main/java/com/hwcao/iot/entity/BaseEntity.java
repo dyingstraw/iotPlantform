@@ -16,5 +16,5 @@ public class BaseEntity {
 
     protected Long id;
     protected Date create_time;
-    protected Date create_user;
+    protected Long create_user;
 }
