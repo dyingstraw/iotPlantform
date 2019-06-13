@@ -15,7 +15,7 @@ public class UserDao {
         UserDTO user = new UserDTO();
         user.setDesc("admin");
         user.setName(name);
-        user.setId(0L);
+        user.setId(1L);
         return user;
 
     }
@@ -25,6 +25,8 @@ public class UserDao {
         user.setName("admin");
         user.setId(id);
         return user;
-
+    }
+    public boolean checkUser(String username,String password){
+        return true;
     }
 }
