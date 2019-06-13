@@ -13,7 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BaseController {
     @RequestMapping("/")
-    public Object sayHello(){
-        return Result.SUCCESS();
+    public Object sayHello(Integer num) throws Exception {
+
+        if (num.equals(1)){
+            throw new Exception("hello exection");
+        }else {
+            return Result.SUCCESS();
+        }
     }
+
+
 }
