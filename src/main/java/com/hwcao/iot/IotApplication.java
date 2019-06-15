@@ -1,9 +1,11 @@
 package com.hwcao.iot;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan(basePackages = "com.hwcao.iot.dao")
 public class IotApplication {
 
     public static void main(String[] args) {
