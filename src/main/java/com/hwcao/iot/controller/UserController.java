@@ -25,8 +25,8 @@ public class UserController {
         return Result.SUCCESS(userService.getUserByName(name));
     }
 
-    @GetMapping("/valid")
-    public Result validUser(String username,String password){
-        return Result.SUCCESS(userDao.checkUser(username,password));
-    }
+    // @GetMapping("/valid")
+    // public Result validUser(String username,String password){
+    //     return Result.SUCCESS(userDao.checkUser(username,password));
+    // }
 }

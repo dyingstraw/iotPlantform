@@ -1,6 +1,7 @@
 package com.hwcao.iot.service;
 
 import com.hwcao.iot.dto.UserDTO;
+import com.hwcao.iot.entity.user.User;
 
 /**
  * @program: iots_pringboot
@@ -15,4 +16,6 @@ public interface UserService {
      * @return
      */
     public UserDTO getUserByName(String name);
+
+    User getUserById(String name);
 }

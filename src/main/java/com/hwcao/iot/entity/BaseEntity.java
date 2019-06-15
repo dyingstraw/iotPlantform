@@ -2,6 +2,7 @@ package com.hwcao.iot.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  * @create: 2019-06-12 19:53
  **/
 @Data
-public class BaseEntity {
+public class BaseEntity implements Serializable {
 
 
     protected Long id;

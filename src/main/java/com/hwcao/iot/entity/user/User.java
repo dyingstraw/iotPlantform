@@ -1,5 +1,6 @@
 package com.hwcao.iot.entity.user;
 
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.hwcao.iot.entity.BaseEntity;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ import lombok.Data;
  * @create: 2019-06-12 19:56
  **/
 @Data
+@TableName("t_user")
 public class User extends BaseEntity {
 
     /**

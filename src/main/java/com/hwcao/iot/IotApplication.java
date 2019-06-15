@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.hwcao.iot.dao")
+@MapperScan(basePackages = "com.hwcao.iot.mapper")
 public class IotApplication {
 
     public static void main(String[] args) {
