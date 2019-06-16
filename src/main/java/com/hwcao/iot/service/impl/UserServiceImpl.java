@@ -1,6 +1,6 @@
 package com.hwcao.iot.service.impl;
 
-import com.hwcao.iot.mapper.UserMapper;
+import com.hwcao.iot.dao.mapper.UserMapper;
 import com.hwcao.iot.dao.user.UserDao;
 import com.hwcao.iot.entity.user.User;
 import com.hwcao.iot.service.UserService;

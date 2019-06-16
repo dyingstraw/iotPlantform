@@ -1,7 +1,7 @@
 package com.hwcao.iot.dao.user;
 
 import com.hwcao.iot.dao.BaseDao;
-import com.hwcao.iot.mapper.UserMapper;
+import com.hwcao.iot.dao.mapper.UserMapper;
 import com.hwcao.iot.entity.user.User;
 import org.springframework.stereotype.Component;
 
