@@ -2,25 +2,26 @@ package com.hwcao.iot.controller;
 
 import com.hwcao.iot.dto.device.DeviceReqDTO;
 import com.hwcao.iot.entity.Result;
+import com.hwcao.iot.entity.device.Device;
 import com.hwcao.iot.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/device")
 public class DeviceController {
     @Autowired
     private DeviceService deviceService;
-    @PostMapping("")
+
 
     /**
      * 添加设备
      * @param deviceReqDTO
      * @return
      */
-    @PostMapping
+    @PostMapping("")
     public Result addDevice(DeviceReqDTO deviceReqDTO){
         return deviceService.addDevice(deviceReqDTO);
     }
@@ -35,12 +36,12 @@ public class DeviceController {
         return deviceService.findOne(id);
     }
 
-    @PutMapping
+    @PutMapping("")
     public Result<Device> updateDevice(DeviceReqDTO deviceReqDTO){
         return deviceService.updateDevice(deviceReqDTO);
     }
 
-    @DeleteMapping
+    @DeleteMapping("")
     public Result deleteDevice(@RequestParam("id") Long id){
         return deviceService.deleteDevice(id);
     }

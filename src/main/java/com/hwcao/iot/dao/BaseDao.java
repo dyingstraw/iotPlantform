@@ -64,11 +64,12 @@ public abstract class BaseDao<M extends BaseMapper<E>,E extends BaseEntity>{
 
     /**
      * 插入记录
-     * @param endity
+     * @param entity
      * @return
      */
-     public int add(E endity){
-         return ((M)baseMapper).insert(endity);
+     public int add(E entity){
+         setTimeAndOptUser(entity,CommonEnum.INSERT);
+         return ((M)baseMapper).insert(entity);
      }
 
 
