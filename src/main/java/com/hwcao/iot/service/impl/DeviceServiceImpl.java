@@ -1,6 +1,7 @@
 package com.hwcao.iot.service.impl;
 
 import com.hwcao.iot.dao.device.DeviceDao;
+import com.hwcao.iot.dao.mapper.DeviceMapper;
 import com.hwcao.iot.dto.device.DeviceReqDTO;
 import com.hwcao.iot.entity.Result;
 import com.hwcao.iot.entity.device.Device;
@@ -15,6 +16,8 @@ import java.util.UUID;
 public class DeviceServiceImpl implements DeviceService {
     @Autowired
     private DeviceDao deviceDao;
+    @Autowired
+    private DeviceMapper deviceMapper;
     @Override
     //回滚操作
     @Transactional(rollbackForClassName = "Exception.class")
@@ -24,6 +27,7 @@ public class DeviceServiceImpl implements DeviceService {
         device.setDeviceDesc(deviceReqDTO.getDesc());
         String deviceKey = UUID.randomUUID().toString();
         device.setSecretKey(deviceKey);
+        // deviceMapper.insert(device);
         deviceDao.add(device);
         return Result.SUCCESS();
     }

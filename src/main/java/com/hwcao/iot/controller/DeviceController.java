@@ -4,6 +4,7 @@ import com.hwcao.iot.dto.device.DeviceReqDTO;
 import com.hwcao.iot.entity.Result;
 import com.hwcao.iot.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DeviceController {
     @Autowired
     private DeviceService deviceService;
+    @PostMapping("")
     public Result addDevice(DeviceReqDTO deviceReqDTO){
         return deviceService.addDevice(deviceReqDTO);
     }

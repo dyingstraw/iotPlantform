@@ -13,6 +13,5 @@ import org.springframework.stereotype.Component;
  * @create: 2019-06-15 13:44
  **/
 @Mapper
-@Component
 public interface UserMapper extends BaseMapper<User> {
 }

@@ -5,7 +5,7 @@ import com.hwcao.iot.entity.BaseEntity;
 import lombok.Data;
 
 @Data
-@TableName("t_device")
+@TableName("t_devices")
 public class Device extends BaseEntity {
     private String deviceName;
     private String secretKey;

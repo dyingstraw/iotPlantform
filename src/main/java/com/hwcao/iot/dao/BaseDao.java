@@ -8,6 +8,7 @@ import com.hwcao.iot.entity.BaseEntity;
 import com.hwcao.iot.exception.CustomException;
 import com.hwcao.iot.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,10 +20,11 @@ import java.util.List;
  * @author: dyingstraw
  * @create: 2019-06-15 13:45
  **/
+@Component
 public abstract class BaseDao<M extends BaseMapper<E>,E extends BaseEntity>{
 
     @Autowired
-    BaseMapper baseMapper;
+    M baseMapper;
 
     /**
      * 通过id获取实体
@@ -32,6 +34,7 @@ public abstract class BaseDao<M extends BaseMapper<E>,E extends BaseEntity>{
     public E getOneById(Serializable id){
         QueryWrapper<E> wrapper = new QueryWrapper<>();
         wrapper.eq("del_flag",0).eq("id",id);
+
         return ((M)baseMapper).selectOne(wrapper);
     }
 

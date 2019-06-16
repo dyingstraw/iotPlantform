@@ -16,10 +16,9 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
+    // @Autowired
     private UserDao userDao;
-    @Autowired
-    private UserMapper userMapper;
+
 
 
     @Override
@@ -29,6 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(String name) {
-        return userDao.getOneById(1);
+        // return userDao.getOneById(1);
+        return null;
     }
 }
