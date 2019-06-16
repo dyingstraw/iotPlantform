@@ -98,8 +98,8 @@ public abstract class BaseDao<M extends BaseMapper<E>,E extends BaseEntity>{
         if (type == CommonEnum.UPDATE){
 
         }else {
-            entity.setCreate_time(new Date());
-            entity.setCreate_user(CommonUtil.getHeaderUserId());
+            entity.setCreateTime(new Date());
+            entity.setCreateUser(CommonUtil.getHeaderUserId());
         }
     }
 

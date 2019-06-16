@@ -1,6 +1,8 @@
 package com.hwcao.iot.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,9 +16,11 @@ import java.util.Date;
 @Data
 public class BaseEntity implements Serializable {
 
-
+    @TableId
     protected Long id;
-    protected Date create_time;
-    protected Long create_user;
+    protected Date createTime;
+    protected Long createUser;
+    protected Date updateTime;
+    protected Long updateUser;
     protected Integer delFlag;
 }

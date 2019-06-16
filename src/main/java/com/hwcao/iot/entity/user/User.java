@@ -1,6 +1,6 @@
 package com.hwcao.iot.entity.user;
 
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.hwcao.iot.entity.BaseEntity;
 import lombok.Data;
 
