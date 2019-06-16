@@ -18,5 +18,5 @@ public class BaseEntity implements Serializable {
     protected Long id;
     protected Date create_time;
     protected Long create_user;
-    protected Integer delFlag;
+    protected Integer delFlag1231;
 }
