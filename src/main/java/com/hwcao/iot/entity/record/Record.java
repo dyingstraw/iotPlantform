@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 @TableName("t_record")
 public class Record extends BaseEntity {
-    private Long devId;
-    private String values;
+    private Long deviceId;
+    private String deviceValues;
     private Integer version;
 
 }

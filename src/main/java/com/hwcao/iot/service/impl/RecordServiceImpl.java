@@ -20,8 +20,8 @@ public class RecordServiceImpl implements RecordService {
     public Result addRecord(RecordRqeDTO recordRqeDTO) {
         try {
             Record record = new Record();
-            record.setDevId(recordRqeDTO.getDevId());
-            record.setValues(recordRqeDTO.getValues());
+            record.setDeviceId(recordRqeDTO.getDeviceId());
+            record.setDeviceValues(recordRqeDTO.getDeviceValues());
             record.setVersion(recordRqeDTO.getVersion());
             recordDao.add(record);
         }catch (Exception e){
@@ -37,6 +37,7 @@ public class RecordServiceImpl implements RecordService {
             recordDao.deleteById(id);
 
         }catch (Exception e){
+            e.printStackTrace();
             throw new ServiceException(ResultEnum.RECORD_DEL_ERROR);
 
         }

@@ -24,8 +24,8 @@ public class RecordServiceImplTest {
     @Test
     public void addRecord() {
         RecordRqeDTO recordRqeDTO = new RecordRqeDTO();
-        recordRqeDTO.setDevId(123456L);
-        recordRqeDTO.setValues("{“value1”:0.1,“value2”:2.3}");
+        recordRqeDTO.setDeviceId(123456L);
+        recordRqeDTO.setDeviceValues("{\"value1\":0.1,\"value2\":2.3}");
         recordRqeDTO.setVersion(1);
         Result result = recordService.addRecord(recordRqeDTO);
         Assert.assertEquals(result.getCode(),new Integer(200));
