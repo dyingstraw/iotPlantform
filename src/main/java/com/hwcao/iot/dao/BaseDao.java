@@ -2,6 +2,7 @@ package com.hwcao.iot.dao;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hwcao.iot.config.CommonEnum;
 
@@ -22,7 +23,7 @@ import java.util.List;
  * @create: 2019-06-15 13:45
  **/
 @Component
-public class BaseDao <M,E extends BaseEntity>extends ServiceImpl {
+public class BaseDao <M extends BaseMapper<E>,E extends BaseEntity>extends ServiceImpl {
 
 
     /**
