@@ -97,6 +97,7 @@ public class BaseDao <M extends BaseMapper<E>,E extends BaseEntity>extends Servi
      * 设置删除记录信息
      * @param entity
      * @param type
+     *
      */
     private void setTimeAndOptUser(E entity, CommonEnum type){
         if (type == CommonEnum.UPDATE){
