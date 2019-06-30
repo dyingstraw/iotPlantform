@@ -22,6 +22,7 @@ import java.util.List;
  * @author: dyingstraw
  * @create: 2019-06-15 13:45
  **/
+@Component
 public class BaseDao <M extends BaseMapper<E>,E extends BaseEntity>extends ServiceImpl {
 
 
@@ -99,10 +100,13 @@ public class BaseDao <M extends BaseMapper<E>,E extends BaseEntity>extends Servi
      */
     private void setTimeAndOptUser(E entity, CommonEnum type){
         if (type == CommonEnum.UPDATE){
+            entity.setUpdateTime(new Date());
+            entity.setUpdateUser(CommonUtil.getHeaderUserId());
 
         }else {
             entity.setCreateTime(new Date());
             entity.setCreateUser(CommonUtil.getHeaderUserId());
+            entity.setDelFlag(0);
         }
     }
 

@@ -7,6 +7,7 @@ import com.hwcao.iot.entity.Result;
 import com.hwcao.iot.entity.record.Record;
 import com.hwcao.iot.exception.ServiceException;
 import com.hwcao.iot.service.RecordService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,10 @@ public class RecordServiceImpl implements RecordService {
     public Result addRecord(RecordRqeDTO recordRqeDTO) {
         try {
             Record record = new Record();
-            record.setDevId(recordRqeDTO.getDevId());
-            record.setValues(recordRqeDTO.getValues());
-            record.setVersion(recordRqeDTO.getVersion());
+            BeanUtils.copyProperties(recordRqeDTO,record);
+//            record.setDeviceId(recordRqeDTO.getDeviceId());
+//            record.setDeviceValues(recordRqeDTO.getDeviceValues());
+//            record.setVersion(recordRqeDTO.getVersion());
             recordDao.add(record);
         }catch (Exception e){
             e.printStackTrace();
@@ -37,6 +39,7 @@ public class RecordServiceImpl implements RecordService {
             recordDao.deleteById(id);
 
         }catch (Exception e){
+            e.printStackTrace();
             throw new ServiceException(ResultEnum.RECORD_DEL_ERROR);
 
         }
