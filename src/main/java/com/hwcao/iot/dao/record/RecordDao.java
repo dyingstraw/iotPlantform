@@ -18,7 +18,7 @@ public class RecordDao extends BaseDao<RecordMapper, Record> {
     @Autowired
     RecordMapper mapper;
 
-    public Page<RecordRespDTO> getRecordByUserIdAndTime(Page page, RecordRqeDTO recordRqeDTO){
+    public IPage<RecordRespDTO> getRecordByUserIdAndTime(Page page, RecordRqeDTO recordRqeDTO){
        return mapper.getRecordByUserIdAndTime(page,recordRqeDTO);
     }
 

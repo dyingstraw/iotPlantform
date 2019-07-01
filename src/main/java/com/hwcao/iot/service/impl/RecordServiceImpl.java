@@ -68,7 +68,7 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     public Result<IPage<RecordRespDTO>> listRecord(RecordRqeDTO recordRqeDTO) {
-        IPage<RecordRespDTO> result = recordDao.getRecordByUserIdAndTime(recordRqeDTO, recordRqeDTO);
+        IPage<RecordRespDTO> result = recordDao.getRecordByUserIdAndTime(new Page(recordRqeDTO.getCurrent(),recordRqeDTO.getSize()), recordRqeDTO);
         return Result.SUCCESS(result);
     }
 }

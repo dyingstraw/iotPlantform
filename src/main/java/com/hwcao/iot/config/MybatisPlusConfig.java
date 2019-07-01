@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement(proxyTargetClass = true)
 @Configuration
-@MapperScan("com.hwcao.iot.dao.mapper.*")
+@MapperScan("com.hwcao.iot.dao.mapper*")
 public class MybatisPlusConfig {
     @Bean
     public PaginationInterceptor paginationInterceptor(){

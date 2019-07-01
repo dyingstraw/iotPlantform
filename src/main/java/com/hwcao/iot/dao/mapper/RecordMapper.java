@@ -7,6 +7,7 @@ import com.hwcao.iot.dto.record.RecordRespDTO;
 import com.hwcao.iot.dto.record.RecordRqeDTO;
 import com.hwcao.iot.entity.record.Record;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +17,10 @@ public interface RecordMapper extends BaseMapper<Record> {
 
 
     @Select(" " +
-            " SELECT r.id as id,r.device_values as device_values,d.device_name as device_name,d.user_id as user_id " +
+            " SELECT r.id as device_id,r.device_values as device_values,d.device_name as device_name,d.user_id as user_id " +
             " FROM t_record r JOIN t_devices d " +
             " on r.device_id = #{recordRqeDTO.deviceId} and user_id = #{recordRqeDTO.userId}"
              )
-    public Page<RecordRespDTO> getRecordByUserIdAndTime(IPage page, RecordRqeDTO recordRqeDTO);
+    Page<RecordRespDTO> getRecordByUserIdAndTime(Page page, @Param("recordRqeDTO")RecordRqeDTO recordRqeDTO);
 
 }
