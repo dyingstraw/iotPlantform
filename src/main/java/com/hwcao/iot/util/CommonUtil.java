@@ -17,7 +17,7 @@ public class CommonUtil {
     private final static String HEADER_USER ="_userId";
 
     /**
-     * 获得请求头的用户id
+     * 获得请求头的用户id，在设备修改、添加等业务时，自动获取请求头的id
      * @return
      */
     public static Long getHeaderUserId(){

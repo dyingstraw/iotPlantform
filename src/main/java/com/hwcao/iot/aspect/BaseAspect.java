@@ -32,10 +32,10 @@ public class BaseAspect {
         log.info("------------------aspect before----------------");
         String name = joinPoint.getSignature().getDeclaringTypeName();
         try{
-        Result r = (Result)joinPoint.proceed(joinPoint.getArgs());
-        r.setSid(UUID.randomUUID().toString());
-        log.info(name+" : " + joinPoint.getSignature().getName()+"("+ Arrays.toString(joinPoint.getArgs())+")");
-        return r;
+            Result r = (Result)joinPoint.proceed(joinPoint.getArgs());
+            r.setSid(UUID.randomUUID().toString());
+            log.info(name+" : " + joinPoint.getSignature().getName()+"("+ Arrays.toString(joinPoint.getArgs())+")");
+            return r;
         }catch (Exception e){
             e.printStackTrace();
             Result<Object> r = Result.FAILED(400, e.getMessage());

@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.websocket.server.PathParam;
 @Slf4j
 @RestController
-@RequestMapping("/api/redis")
+@RequestMapping("/api/cache")
 public class RedisController {
 
     @Autowired
     private RedisCacheService redisCacheService;
 
-    @GetMapping("/cache/sync")
+    @GetMapping("/sync")
     public Result syncDataBase(@RequestParam("id") String id){
         try {
             redisCacheService.sync(id);

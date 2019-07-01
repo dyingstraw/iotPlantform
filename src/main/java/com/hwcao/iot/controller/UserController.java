@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @create: 2019-06-12 20:07
  **/
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
     @Autowired
     private UserService userService;

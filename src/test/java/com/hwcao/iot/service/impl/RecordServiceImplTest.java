@@ -1,5 +1,7 @@
 package com.hwcao.iot.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.hwcao.iot.dto.record.RecordRespDTO;
 import com.hwcao.iot.dto.record.RecordRqeDTO;
 import com.hwcao.iot.entity.Result;
 import com.hwcao.iot.entity.record.Record;
@@ -12,6 +14,12 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
@@ -36,5 +44,22 @@ public class RecordServiceImplTest {
         Result result = recordService.delRecord(1L);
         Assert.assertEquals(result.getCode(),new Integer(200));
 
+    }
+//
+//    @Test
+//    public void getList() throws ParseException {
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        Date dateStart = dateFormat.parse("2019-06-23");
+//        Date dateEnd = dateFormat.parse("2019-06-24");
+//        List<Record> res = recordService.listRecord(dateStart,dateEnd);
+//        System.out.println(res);
+//    }
+    @Test
+    public void getPage() throws ParseException {
+        RecordRqeDTO recordRqeDTO = new RecordRqeDTO();
+        recordRqeDTO.setDeviceId(1L);
+        recordRqeDTO.setUserId(1L);
+        Result<IPage<RecordRespDTO>> res = recordService.listRecord(recordRqeDTO);
+        System.out.println(res);
     }
 }

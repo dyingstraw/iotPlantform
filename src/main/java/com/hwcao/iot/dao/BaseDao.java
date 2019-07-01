@@ -3,10 +3,12 @@ package com.hwcao.iot.dao;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hwcao.iot.config.CommonEnum;
 
 import com.hwcao.iot.entity.BaseEntity;
+import com.hwcao.iot.entity.record.Record;
 import com.hwcao.iot.exception.CustomException;
 import com.hwcao.iot.util.CommonUtil;
 import org.springframework.stereotype.Component;
@@ -46,6 +48,11 @@ public class BaseDao <M extends BaseMapper<E>,E extends BaseEntity>extends Servi
     public List<E> getList(QueryWrapper wrapper){
         wrapper.eq("del_flag",0);
         return (List<E>)super.list(wrapper);
+    }
+
+    public IPage<E> getPage(IPage<E> page, QueryWrapper queryWrapper){
+        queryWrapper.eq("del_flag",0);
+        return (IPage<E>) super.page(page,queryWrapper);
     }
 
     /**
@@ -99,7 +106,7 @@ public class BaseDao <M extends BaseMapper<E>,E extends BaseEntity>extends Servi
      * @param type
      *
      */
-    private void setTimeAndOptUser(E entity, CommonEnum type){
+    public void setTimeAndOptUser(E entity, CommonEnum type){
         if (type == CommonEnum.UPDATE){
             entity.setUpdateTime(new Date());
             entity.setUpdateUser(CommonUtil.getHeaderUserId());
@@ -110,5 +117,4 @@ public class BaseDao <M extends BaseMapper<E>,E extends BaseEntity>extends Servi
             entity.setDelFlag(0);
         }
     }
-
 }
