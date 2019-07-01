@@ -19,7 +19,7 @@ public interface RecordMapper extends BaseMapper<Record> {
     @Select(" " +
             " SELECT r.id as device_id,r.device_values as device_values,d.device_name as device_name,d.user_id as user_id " +
             " FROM t_record r JOIN t_devices d " +
-            " on r.device_id = #{recordRqeDTO.deviceId} and user_id = #{recordRqeDTO.userId}"
+            " on r.device_id = d.id and user_id = #{recordRqeDTO.userId}"
              )
     Page<RecordRespDTO> getRecordByUserIdAndTime(Page page, @Param("recordRqeDTO")RecordRqeDTO recordRqeDTO);
 

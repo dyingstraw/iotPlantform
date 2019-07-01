@@ -8,5 +8,5 @@ import java.util.List;
 public class RecordRespDTO {
     private Long deviceId;
     private String deviceName;
-    private List<Double> deviceValues;
+    private String deviceValues;
 }
