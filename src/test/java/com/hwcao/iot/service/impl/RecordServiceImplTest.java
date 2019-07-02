@@ -45,21 +45,13 @@ public class RecordServiceImplTest {
         Assert.assertEquals(result.getCode(),new Integer(200));
 
     }
-//
-//    @Test
-//    public void getList() throws ParseException {
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        Date dateStart = dateFormat.parse("2019-06-23");
-//        Date dateEnd = dateFormat.parse("2019-06-24");
-//        List<Record> res = recordService.listRecord(dateStart,dateEnd);
-//        System.out.println(res);
-//    }
+
     @Test
     public void getPage() throws ParseException {
         RecordRqeDTO recordRqeDTO = new RecordRqeDTO();
         recordRqeDTO.setDeviceId(1L);
         recordRqeDTO.setUserId(1L);
         Result<IPage<RecordRespDTO>> res = recordService.listRecord(recordRqeDTO);
-        System.out.println(res);
+        System.out.println(res.getData());
     }
 }
