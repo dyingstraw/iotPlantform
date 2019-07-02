@@ -24,7 +24,7 @@ import java.util.List;
  * @author: dyingstraw
  * @create: 2019-06-15 13:45
  **/
-public class BaseDao <M extends BaseMapper<E>,E extends BaseEntity>extends ServiceImpl {
+public abstract class BaseDao <M extends BaseMapper<E>,E extends BaseEntity>extends ServiceImpl {
 
 
     /**

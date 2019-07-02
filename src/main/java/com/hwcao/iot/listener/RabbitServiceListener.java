@@ -18,6 +18,5 @@ public class RabbitServiceListener {
     @RabbitHandler
     public void recieved(byte[] msg) throws Exception {
        log.info("[hello] recieved message:" + new String(msg));
-
     }
 }
