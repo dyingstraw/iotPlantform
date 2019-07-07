@@ -24,8 +24,7 @@ public class RecordController {
     @GetMapping("/list")
     public Result listRecord(RecordRqeDTO recordRqeDTO) {
 
-        recordService.listRecord(recordRqeDTO);
-        return null;
+        return recordService.listRecord(recordRqeDTO);
     }
 
 }

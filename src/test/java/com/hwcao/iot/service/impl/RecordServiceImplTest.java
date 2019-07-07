@@ -51,8 +51,10 @@ public class RecordServiceImplTest {
         RecordRqeDTO recordRqeDTO = new RecordRqeDTO();
         recordRqeDTO.setDeviceId(1L) ;
         recordRqeDTO.setUserId(1L);
-        recordRqeDTO.setDateStart("2019-06-01");
-        recordRqeDTO.setDateEnd("2019-07-01");
+        recordRqeDTO.setDateStart("2019-04-01");
+        recordRqeDTO.setDateEnd("2019-08-01");
+        recordRqeDTO.setCurrent(2);
+        recordRqeDTO.setSize(6);
         Result<IPage<RecordRespDTO>> res = recordService.listRecord(recordRqeDTO);
         System.out.println(res.getData().getRecords());
     }

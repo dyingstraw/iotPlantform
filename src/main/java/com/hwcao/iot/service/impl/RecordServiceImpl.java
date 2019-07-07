@@ -57,24 +57,10 @@ public class RecordServiceImpl implements RecordService {
         return Result.SUCCESS();
     }
 
-//    @Override
-//    public List<Record> listRecord(Date dateStart, Date dateEnd) {
-//        List<Record> result  = new ArrayList<>();
-//        try{
-//            QueryWrapper wq = new QueryWrapper();
-//            wq.ge("create_time",dateStart);
-//            wq.le("create_time",dateEnd);
-//
-//            result = recordDao.getList(wq);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return result;
-//    }
-
     @Override
     public Result<IPage<RecordRespDTO>> listRecord(RecordRqeDTO recordRqeDTO) {
         IPage<RecordRespDTO> result = recordDao.getRecordByUserIdAndTime(new Page(recordRqeDTO.getCurrent(), recordRqeDTO.getSize()), recordRqeDTO);
+        result.setTotal(recordDao.countRecordByUserIdAndTime(recordRqeDTO));
         return Result.SUCCESS(result);
     }
 }

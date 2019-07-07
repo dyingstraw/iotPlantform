@@ -1,5 +1,8 @@
 package com.hwcao.iot.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.hwcao.iot.dto.device.DeviceExcelDTO;
 import com.hwcao.iot.dto.device.DeviceReqDTO;
 import com.hwcao.iot.entity.Result;
@@ -24,6 +27,7 @@ public class DeviceController {
     /** * 添加设备*/
     @PostMapping("")
     public Result addDevice(DeviceReqDTO deviceReqDTO){
+        JSONObject.parseObject("",new TypeReference<DeviceReqDTO>(){});
         return deviceService.addDevice(deviceReqDTO);
     }
 
