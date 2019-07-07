@@ -49,9 +49,11 @@ public class RecordServiceImplTest {
     @Test
     public void getPage() throws ParseException {
         RecordRqeDTO recordRqeDTO = new RecordRqeDTO();
-        recordRqeDTO.setDeviceId(1L);
+        recordRqeDTO.setDeviceId(1L) ;
         recordRqeDTO.setUserId(1L);
+        recordRqeDTO.setDateStart("2019-06-01");
+        recordRqeDTO.setDateEnd("2019-07-01");
         Result<IPage<RecordRespDTO>> res = recordService.listRecord(recordRqeDTO);
-        System.out.println(res.getData());
+        System.out.println(res.getData().getRecords());
     }
 }

@@ -14,23 +14,13 @@ import java.util.List;
 public class DeviceController {
     @Autowired
     private DeviceService deviceService;
-
-
-    /**
-     * 添加设备
-     * @param deviceReqDTO
-     * @return
-     */
+    /** * 添加设备*/
     @PostMapping("")
     public Result addDevice(DeviceReqDTO deviceReqDTO){
         return deviceService.addDevice(deviceReqDTO);
     }
 
-    /**\
-     * 查询设备
-     * @param id
-     * @return
-     */
+    /**查询设备*/
     @GetMapping
     public Result<Device> findOne(@RequestParam("id") Long id){
         return deviceService.findOne(id);

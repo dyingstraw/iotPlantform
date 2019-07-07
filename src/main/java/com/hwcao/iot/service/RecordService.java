@@ -15,6 +15,6 @@ public interface RecordService {
     Result addRecord(RecordRqeDTO recordRqeDTO);
     Result addRecord(Record record);
     Result delRecord(Long id);
-
     Result<IPage<RecordRespDTO>> listRecord(RecordRqeDTO recordRqeDTO);
+
 }
