@@ -5,6 +5,7 @@ import com.hwcao.iot.service.RealControlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @program: iots_pringboot
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author: dyingstraw
  * @create: 2019-07-07 22:00
  **/
+@RestController
 @RequestMapping("/api/real")
 public class RealControlController {
     @Autowired
