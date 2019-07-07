@@ -40,6 +40,12 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
+    public Result addRecord(Record record) {
+        recordDao.add(record);
+        return Result.SUCCESS();
+    }
+
+    @Override
     public Result delRecord(Long id) {
         try {
             recordDao.deleteById(id);

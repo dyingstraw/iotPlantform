@@ -22,7 +22,11 @@ public class CommonUtil {
      */
     public static Long getHeaderUserId(){
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if(servletRequestAttributes == null){
+            return 0L;
+        }
         HttpServletRequest req = servletRequestAttributes.getRequest();
+
         return req.getHeader(HEADER_USER)== null ?0L:Long.valueOf(req.getHeader(HEADER_USER));
     }
 }
