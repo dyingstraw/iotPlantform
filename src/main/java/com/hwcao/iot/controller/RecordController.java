@@ -15,14 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("/record")
 public class RecordController {
     @Autowired
     private RecordService recordService;
 
     @GetMapping("/list")
-    public Result listRecord(@RequestParam(value = "RecordReqDTO")RecordRqeDTO recordRqeDTO) {
+    public Result listRecord(RecordRqeDTO recordRqeDTO) {
 
         recordService.listRecord(recordRqeDTO);
         return null;
