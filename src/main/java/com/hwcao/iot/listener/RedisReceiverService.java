@@ -14,5 +14,6 @@ import org.springframework.stereotype.Component;
 public class RedisReceiverService {
     public void receiveMessage(String message) {
         log.info("redis receive:{}",message);
+        // TODO: 2019/7/7  具体监听之后要做什么业务
     }
 }

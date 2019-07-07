@@ -19,10 +19,19 @@ public class RealControlController {
     @Autowired
     private RealControlService realControlService;
 
+    /**
+     * 取消监听
+     * @return
+     */
     @GetMapping("/cancel")
     public Object cancelReal(){
         return realControlService.cancelSubscribe();
     }
+
+    /**
+     * 开始监听
+     * @return
+     */
     @GetMapping("/start")
     public Object startReal(){
         return realControlService.startSubscribe();
