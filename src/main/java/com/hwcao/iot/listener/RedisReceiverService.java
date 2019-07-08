@@ -3,6 +3,10 @@ package com.hwcao.iot.listener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import javax.websocket.Session;
+import java.io.IOException;
+import java.util.Vector;
+
 /**
  * @program: iots_pringboot
  * @description: redis订阅监听
@@ -14,6 +18,13 @@ import org.springframework.stereotype.Component;
 public class RedisReceiverService {
     public void receiveMessage(String message) {
         log.info("redis receive:{}",message);
-        // TODO: 2019/7/7  具体监听之后要做什么业务
+       Vector<Session> sessions = WebSocketServer.getSessions();
+        sessions.stream().forEach(e->{
+            try {
+                e.getBasicRemote().sendText(message);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
     }
 }

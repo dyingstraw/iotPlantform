@@ -66,7 +66,6 @@ public class RedisCacheConfig {
 RedisReceiverService
         这里实质就是监听调用ReceiverService类中的receiveMessage方法
         */
-
         log.info("redis 的监听处理类方法为：{}","com.hwcao.iot.listener.RedisReceiverService");
         return new MessageListenerAdapter(receiver, "receiveMessage");
     }
