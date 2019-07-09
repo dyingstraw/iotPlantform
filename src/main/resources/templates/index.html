@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="common.js"></script>
+    <!-- 先引入 Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <el-container style="height: 30%; border: 1px solid #eee;">
+            <el-header>
+                <el-menu :default-active="mainActiveIndex" class="el-menu-demo" mode="horizontal"
+                    background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @Select="handleSelect">
+                    <el-menu-item index="0">
+                        <div type="info">
+                            设备管理中心
+                        </div>
+                    </el-menu-item>
+                    <el-menu-item index="1">概况</el-menu-item>
+                    <el-submenu index="2">
+                        <template slot="title">设备管理</template>
+                        <el-menu-item index="2-1">添加设备</el-menu-item>
+                        <el-menu-item index="2-2">设备列表</el-menu-item>
+                        <el-menu-item index="2-3">实时控制</el-menu-item>
+                    </el-submenu>
+                    <el-menu-item index="3">设备消息记录</el-menu-item>
+                    <el-menu-item index="4">应用中心</el-menu-item>
+                </el-menu>
+            </el-header>
+
+            <el-row style="height: 60px;align-self: center">
+                <h2>设备：<font style="color: brown">1 </font> 实时监控</h2>
+            </el-row>
+        </el-container>
+    </div>
+    <div class="el-row">
+        <div id="chart_V" style="height: 500px"></div>
+    </div>
+
+    <div class="el-row">
+        <div id="chart_V" style="height: 500px"></div>
+    </div>
+
+
+</body>
+
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript"
+    src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+
+<script type="text/javascript">
+    var dom_V = document.getElementById("chart_V");
+
+    var myChart_V = echarts.init(dom_V);
+
+    var app = {};
+    option_V = null;
+    option_V = {
+        tooltip: {
+            formatter: "{a} <br/>{b} : {c}"
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [
+            {
+                name: '电压',
+                type: 'gauge',
+                max: 500,
+                radius: 200,
+                center: ['40%', '50%'],    // 默认全局居中
+                detail: { formatter: '{value}' },
+                data: [{ value: 50, name: '电压' }],
+                axisLine: {            // 坐标轴线
+                    lineStyle: {       // 属性lineStyle控制线条样式
+                        width: 20
+                    }
+                },
+
+            },
+            {
+                name: '电流',
+                type: 'gauge',
+                max: 500,
+                radius: 120,
+                center: ['62%', '60%'],    // 默认全局居中
+                detail: { formatter: '{value}' },
+                data: [{ value: 50, name: '电流' }],
+                axisLine: {            // 坐标轴线
+                    lineStyle: {       // 属性lineStyle控制线条样式
+                        width: 8
+                    }
+                },
+            }
+        ]
+    };
+
+
+    var ws = new WebSocket("ws://localhost:80/ws/1");
+
+    ws.onopen = function (evt) {
+        console.log("Connection open ...");
+        ws.send("Hello WebSockets!");
+    };
+
+    ws.onmessage = function (evt) {
+        console.log("Received Message: " + evt.data);
+        try {
+            msg = JSON.parse(evt.data);
+            option_V.series[0].data[0].value = msg.values[0];
+            option_V.series[1].data[0].value = msg.values[1];
+            myChart_V.setOption(option_V, true);
+        } catch (e) {
+            console.log(e);
+            myChart_V.setOption(option_V, true);
+        }
+
+
+    };
+    ws.onclose = function (evt) {
+        console.log("Connection closed.");
+    };
+
+</script>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                mainActiveIndex: "2-3",
+            }
+        },
+        methods: {
+            getDevices() {
+                url = "http://localhost/record/list"
+                axios.get(url, {
+                    params: {
+                        current: this.current,
+                        size: this.size,
+                        userId: 1
+                    }
+                }).then(response => {
+                    this.devices = response.data.data.records;
+                    this.total = response.data.data.total;
+                })
+            },
+            handleSelect(key, keyPath) {
+                $dsc().handleSelect(key, keyPath);
+            },
+            handleCurrentChange(val) {
+                console.log(`当前页: ${val}`);
+                this.current = val;
+                this.getDevices();
+            },
+            onSubmit() {
+                console.log('submit!');
+            }
+
+        },
+
+        mounted() {
+            this.getDevices();
+        }
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="common.js"></script>
+    <!-- 先引入 Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    
+
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <el-container style="height: 100%; border: 1px solid #eee;">
+            <el-header>
+                <el-menu :default-active="mainActiveIndex" class="el-menu-demo" mode="horizontal"
+                    background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @Select="handleSelect">
+                    <el-menu-item index="0">
+                        <div type="info">
+                            设备管理中心
+                        </div>
+                    </el-menu-item>
+                    <el-menu-item index="1">概况</el-menu-item>
+                    <el-submenu index="2">
+                        <template slot="title">设备管理</template>
+                        <el-menu-item index="2-1">添加设备</el-menu-item>
+                        <el-menu-item index="2-2">设备列表</el-menu-item>
+                        <el-menu-item index="2-3">实时控制</el-menu-item>
+                    </el-submenu>
+                    <el-menu-item index="3">设备消息记录</el-menu-item>
+                    <el-menu-item index="4">应用中心</el-menu-item>
+                </el-menu>
+            </el-header>
+
+            <el-row style="height: 60px;align-self: center">
+                <h2>添加设备</h2>
+            </el-row>
+            <el-row style="align-self: center;width: 60%">
+                <el-main>
+                    <el-form ref="form" :model="form" label-width="150px">
+                        <el-form-item label="设备名称">
+                            <el-input v-model="form.name"></el-input>
+                        </el-form-item>
+                        <el-form-item label="软件版本">
+                            <el-select v-model="form.version" placeholder="请选择...">
+                                <el-option label="v1" value="1"></el-option>
+                                <el-option label="v2" value="2"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="设备描述">
+                            <el-input type="textarea" v-model="form.desc"></el-input>
+                        </el-form-item>
+                        <el-form-item label="设备类别">
+                            <el-checkbox-group v-model="form.type">
+                                <el-checkbox label="断路器" name="type"></el-checkbox>
+                                <el-checkbox label="检测器" name="type"></el-checkbox>
+                                <el-checkbox label="分析器" name="type"></el-checkbox>
+                                <el-checkbox label="实时节点" name="type"></el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                        <el-form-item label="数据上传间隔（s）">
+                            <el-input type="number" v-model="form.time" style="width: 100px"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="onSubmit">立即创建</el-button>
+                            <el-button>取消</el-button>
+                        </el-form-item>
+                    </el-form>
+                </el-main>
+            </el-row>
+
+            <el-footer>
+                hello
+               
+            </el-footer>
+        </el-container>
+
+    </div>
+</body>
+
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                _this:this,
+                form: {
+                    name: "",
+                    version: "V1",
+                    desc: "",
+                    type: [],
+                    time:10
+                },
+                mainActiveIndex: "2-2",
+                devices: null,
+                searchTxt: "",
+                total: 200,
+                current: 1,
+                size: 10
+            }
+        },
+        methods: {
+            getDevices() {
+                url = "http://localhost/record/list"
+                axios.get(url, {
+                    params: {
+                        current: this.current,
+                        size: this.size,
+                        userId: 1
+                    }
+                }).then(response => {
+                    this.devices = response.data.data.records;
+                    this.total = response.data.data.total;
+                })
+            },
+            handleSelect(key, keyPath) {
+                $dsc().handleSelect(key,keyPath);
+            },            
+            handleCurrentChange(val) {
+                console.log(`当前页: ${val}`);
+                this.current = val;
+                this.getDevices();
+            },
+            onSubmit() {
+                console.log('submit!');
+            }
+
+        },
+
+        mounted() {
+            this.getDevices();
+        }
+
+    })
+</script>
+
+</html>
