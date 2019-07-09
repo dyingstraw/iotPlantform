@@ -1,11 +1,14 @@
 package com.hwcao.iot.listener;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.Session;
 import java.io.IOException;
-import java.util.Vector;
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  * @program: iots_pringboot
@@ -18,13 +21,22 @@ import java.util.Vector;
 public class RedisReceiverService {
     public void receiveMessage(String message) {
         log.info("redis receive:{}",message);
-       Vector<Session> sessions = WebSocketServer.getSessions();
-        sessions.stream().forEach(e->{
-            try {
-                e.getBasicRemote().sendText(message);
-            } catch (IOException e1) {
-                e1.printStackTrace();
+        JSONObject inMsg = (JSONObject) JSONObject.parse(message);
+        JSONObject inMsgData = (JSONObject) inMsg.get("data");
+
+        String devId = String.valueOf(inMsgData.get("devId"));
+        log.info("【devId】"+devId);
+
+        HashMap<Session, Set<String>> hsSession = WebSocketServer.getSessions();
+        for(Session session:hsSession.keySet()){
+            Set<String> mess = hsSession.get(session);
+            if(mess.contains(devId)){
+                try {
+                    session.getBasicRemote().sendText(inMsgData.toJSONString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        });
+        }
     }
 }
