@@ -23,7 +23,7 @@ import java.util.UUID;
 @Component
 public class BaseAspect {
 
-    @Pointcut("execution(public * com.hwcao.iot.controller.*.*(..))")
+    @Pointcut("execution(public Result* com.hwcao.iot.controller.*.*(..))")
     public void controller(){
     }
 
