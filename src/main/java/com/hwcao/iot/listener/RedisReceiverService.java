@@ -21,8 +21,8 @@ import java.util.Set;
 public class RedisReceiverService {
     public void receiveMessage(String message) {
         log.info("redis receive:{}",message);
-        JSONObject inMsg = (JSONObject) JSONObject.parse(message);
-        JSONObject inMsgData = (JSONObject) inMsg.get("data");
+        JSONObject inMsgData = (JSONObject) JSONObject.parse(message);
+//        JSONObject inMsgData = (JSONObject) inMsg.get("data");
 
         String devId = String.valueOf(inMsgData.get("devId"));
         log.info("【devId】"+devId);

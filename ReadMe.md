@@ -16,3 +16,20 @@
 ![系统框架图](img/system.png)
 
 
+# 单机单节点压力测试效果
+### 节点配置
+名称|属性|备注
+---|---|---
+服务器os|win10 amd64|idea运行
+虚拟机|Java HotSpot(TM) 64-Bit Server VM版本 25.121-b13||
+JIT|HotSpot 64-Bit Tiered Compilers|
+总编译时间|15.654 秒|
+总物理内存|12,453,172 KB|
+内网带宽|150M|实际没那么大
+服务器网卡|Qualcomm Atheros QCA9377 Wireless Network Adapter
+
+![jvm活动概况](img/jvm.png)
+
+[点击查看平台压力测试详情(加载可能很慢)](http://htmlpreview.github.io/?https://github.com/dyingstraw/iotServer/blob/master/img/mytest/index.html)
+
+

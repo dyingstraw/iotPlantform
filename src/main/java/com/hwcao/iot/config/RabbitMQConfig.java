@@ -27,7 +27,7 @@ public class RabbitMQConfig {
     }
     @Bean
     public DirectExchange defaultExchange() {
-        return new DirectExchange("iot_1_192.168.1.100",false,false);
+        return new DirectExchange("iot@1_192.168.1.100",false,false);
     }
     @Bean
     public Binding binding() {
