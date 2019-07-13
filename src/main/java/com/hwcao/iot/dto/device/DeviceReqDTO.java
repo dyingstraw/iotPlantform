@@ -7,6 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class DeviceReqDTO {
     private Long id;
-    private String desc;
-    private String name;
+    private String deviceDesc;
+    private String deviceName;
 }

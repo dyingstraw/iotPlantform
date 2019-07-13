@@ -16,10 +16,5 @@ import static org.junit.Assert.*;
 public class UserServiceImplTest extends ApplicationContextTestUtils {
     @Autowired
     UserService userService;
-    @Test
-    public void test(){
-        User u = userService.getUserById("121");
-        System.out.println(u);
 
-    }
 }

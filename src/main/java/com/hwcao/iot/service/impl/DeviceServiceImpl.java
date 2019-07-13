@@ -35,8 +35,8 @@ public class DeviceServiceImpl implements DeviceService {
     @Transactional(rollbackForClassName = "Exception.class")
     public Result addDevice(DeviceReqDTO deviceReqDTO) {
         Device device = new Device();
-        device.setDeviceName(deviceReqDTO.getName());
-        device.setDeviceDesc(deviceReqDTO.getDesc());
+        device.setDeviceName(deviceReqDTO.getDeviceName());
+        device.setDeviceDesc(deviceReqDTO.getDeviceDesc());
         String deviceKey = UUID.randomUUID().toString();
         device.setSecretKey(deviceKey);
         // deviceMapper.insert(device);
@@ -52,9 +52,9 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Override
     public Result<Device> updateDevice(DeviceReqDTO deviceReqDTO) {
-        Device device = null;
+        Device device = new Device();
         try{
-            device = deviceDao.getOneById(deviceReqDTO.getId());
+//            device = deviceDao.getOneById(deviceReqDTO.getId());
             BeanUtils.copyProperties(deviceReqDTO,device);
             deviceDao.update(device);
 

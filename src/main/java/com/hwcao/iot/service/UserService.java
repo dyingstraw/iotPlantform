@@ -1,21 +1,22 @@
 package com.hwcao.iot.service;
 
+import com.hwcao.iot.dto.User.UserReqDTO;
+import com.hwcao.iot.dto.User.UserRespDTO;
 import com.hwcao.iot.dto.UserDTO;
+import com.hwcao.iot.entity.Result;
 import com.hwcao.iot.entity.user.User;
 
+import javax.servlet.http.HttpSession;
+
 /**
- * @program: iots_pringboot
- * @description:
- * @author: dyingstraw
- * @create: 2019-06-12 20:11
- **/
+ * @author guyaren
+ */
 public interface UserService {
     /**
-     * 通过用户名查找用户
-     * @param name
+     * @param userReqDTO
      * @return
      */
-    public UserDTO getUserByName(String name);
+    Result<UserRespDTO> login(UserReqDTO userReqDTO, HttpSession httpSession);
 
-    User getUserById(String name);
+    Result register(UserReqDTO userReqDTO);
 }

@@ -20,13 +20,13 @@ public class DeviceServiceImplTest {
 
     @Test
     public void addDevice() {
-        DeviceReqDTO deviceReqDTO = new DeviceReqDTO(8L,"设备2","device2");
+        DeviceReqDTO deviceReqDTO = new DeviceReqDTO(9L,"设备2","dev2");
         Result result = deviceService.addDevice(deviceReqDTO);
         Assert.assertEquals(new Integer(200),result.getCode());
     }
     @Test
     public void updateDevice(){
-        DeviceReqDTO deviceReqDTO = new DeviceReqDTO(1L,"设备2","dev2");
+        DeviceReqDTO deviceReqDTO = new DeviceReqDTO(2L,"设备2","dev2");
         deviceService.updateDevice(deviceReqDTO);
     }
 }

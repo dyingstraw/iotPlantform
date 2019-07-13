@@ -17,13 +17,14 @@ public class User extends BaseEntity {
     /**
      * 用户名
      */
-    private String name;
+    private String userName;
+    /**
+     * 用户描述
+     */
+    private String userDesc;
     /**
      * 用户密码
      */
     private String password;
-    /**
-     * 描述
-     */
-    private String desc;
+
 }

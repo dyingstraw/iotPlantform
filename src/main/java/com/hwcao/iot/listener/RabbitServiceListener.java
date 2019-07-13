@@ -15,8 +15,6 @@ import org.springframework.stereotype.Component;
 public class RabbitServiceListener {
     @Autowired
     private RecordService recordService;
-
-
     /**
      * 消息消费
      *
