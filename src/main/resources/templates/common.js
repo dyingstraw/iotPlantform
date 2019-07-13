@@ -1,10 +1,9 @@
-
-
-function ddd(){
+function ddd() {
     console.log("mylib is init!")
-    this.mainActiveIndex =null;
+    this.mainActiveIndex = null;
 
 }
+
 ddd.prototype.handleSelect = function (key, keyPath) {
     console.log(key);
     console.log(keyPath);
@@ -15,6 +14,8 @@ ddd.prototype.handleSelect = function (key, keyPath) {
         window.location.href = 'records.html';
     } else if (key == "4") {
         window.location.href = 'applation.html';
+    } else if (key == "0") {
+        window.location.href = 'login.html';
     } else {
         if (key == "2-1") {
             window.location.href = 'addDevice.html';
@@ -26,9 +27,9 @@ ddd.prototype.handleSelect = function (key, keyPath) {
         }
     }
 }
-ddd.prototype.mainActiveIndex =function(){
+ddd.prototype.mainActiveIndex = function () {
     return temp;
 }
-$dsc=function $dsc(){
+$dsc = function $dsc() {
     return new ddd();
 }
