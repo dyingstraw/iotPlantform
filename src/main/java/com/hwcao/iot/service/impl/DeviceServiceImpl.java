@@ -55,8 +55,9 @@ public class DeviceServiceImpl implements DeviceService {
         Device device = null;
         try{
             device = deviceDao.getOneById(deviceReqDTO.getId());
-            device.setDeviceName(deviceReqDTO.getName());
-            device.setDeviceDesc(deviceReqDTO.getDesc());
+            BeanUtils.copyProperties(deviceReqDTO,device);
+            deviceDao.update(device);
+
         }catch (Exception e){
             throw new DeviceException(ResultEnum.DEVICE_NOT_FIND);
         }
