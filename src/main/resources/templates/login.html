@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="common.js"></script>
+    <!-- 先引入 Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <el-container style="height: 100%; border: 1px solid #eee;">
+        <el-header>
+            <el-menu :default-active="mainActiveIndex" class="el-menu-demo" mode="horizontal"
+                     background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @Select="handleSelect">
+                <el-menu-item index="0">
+                    <div type="info">
+                        设备管理中心
+                    </div>
+                </el-menu-item>
+                <el-menu-item index="1">概况</el-menu-item>
+                <el-submenu index="2">
+                    <template slot="title">设备管理</template>
+                    <el-menu-item index="2-1">添加设备</el-menu-item>
+                    <el-menu-item index="2-2">设备列表</el-menu-item>
+                    <el-menu-item index="2-3">实时控制</el-menu-item>
+                </el-submenu>
+                <el-menu-item index="3">设备消息记录</el-menu-item>
+                <el-menu-item index="4">应用中心</el-menu-item>
+            </el-menu>
+        </el-header>
+
+        <el-row style="height: 60px;align-self: center">
+            <h2>登录</h2>
+        </el-row>
+        <el-row style="align-self: center;width: 60%">
+            <el-main>
+                <el-form ref="form" :model="form" label-width="150px">
+                    <el-form-item label="用户名">
+                        <el-input v-model="form.userName"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码">
+                        <el-input v-model="form.password"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="onSubmit">登录</el-button>
+                        <el-button>注册</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-main>
+        </el-row>
+
+        <el-footer>
+            hello
+
+        </el-footer>
+    </el-container>
+
+</div>
+</body>
+
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                _this:this,
+                form: {
+                    userName: "",
+                    password: "",
+                },
+                mainActiveIndex: "0",
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                $dsc().handleSelect(key,keyPath);
+            },
+            onSubmit() {
+                this.$message("登陆中");
+                console.log('submit!');
+                url = "http://192.168.1.105/api/user/login"
+                axios({
+                    url:url,
+                    method:"post",
+
+                    data:{
+                        userName:this.form.userName,
+                        password:this.form.password
+                    }
+                }).then(response => {
+                   this.$message(response.data);
+
+            })
+            }
+
+        },
+
+        mounted() {
+
+        }
+
+    })
+</script>
+
+</html>
