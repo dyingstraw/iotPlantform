@@ -30,7 +30,6 @@ public class DeviceController {
         JSONObject.parseObject("",new TypeReference<DeviceReqDTO>(){});
         return deviceService.addDevice(deviceReqDTO);
     }
-
     /**查询设备*/
     @GetMapping
     public Result<Device> findOne(@RequestParam("id") Long id){

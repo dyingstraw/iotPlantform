@@ -30,7 +30,6 @@ public class RedisCacheConfig {
         template.afterPropertiesSet();
         return template;
     }
-
     /**
      * redis消息监听器容器
      * 可以添加多个监听不同话题的redis监听器，只需要把消息监听器和相应的消息订阅处理器绑定，该消息监听器
@@ -39,14 +38,13 @@ public class RedisCacheConfig {
      * @param listenerAdapter
      * @return
      */
-    @Bean //相当于xml中的bean
+    @Bean
     @Qualifier("myRedisMessageListenerContainer")
     public RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
                                                    MessageListenerAdapter listenerAdapter) {
-
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        //订阅了一个叫具体的 的通道
+        //订阅了一个叫具体的 的通道,传入处理器
         container.addMessageListener(listenerAdapter, new PatternTopic("realMessage"));
         //这个container 可以添加多个 messageListener
         log.info("redis 对监听主题是：{}","realMessage");
@@ -60,10 +58,10 @@ public class RedisCacheConfig {
      */
     @Bean
     @Qualifier("myMessageListener")
-    MessageListenerAdapter listenerAdapter(RedisReceiverService receiver) {
+    public MessageListenerAdapter listenerAdapter(RedisReceiverService receiver) {
         /*这个地方 是给messageListenerAdapter 传入一个消息接受的处理器，利用反射的方法调用“receiveMessage”
         也有好几个重载方法，这边默认调用处理器的方法 叫handleMessage 可以自己到源码里面看
-RedisReceiverService
+        RedisReceiverService
         这里实质就是监听调用ReceiverService类中的receiveMessage方法
         */
         log.info("redis 的监听处理类方法为：{}","com.hwcao.iot.listener.RedisReceiverService");

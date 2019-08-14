@@ -39,7 +39,6 @@ public class DeviceServiceImpl implements DeviceService {
         device.setDeviceDesc(deviceReqDTO.getDeviceDesc());
         String deviceKey = UUID.randomUUID().toString();
         device.setSecretKey(deviceKey);
-        // deviceMapper.insert(device);
         deviceDao.add(device);
         return Result.SUCCESS();
     }
@@ -54,7 +53,6 @@ public class DeviceServiceImpl implements DeviceService {
     public Result<Device> updateDevice(DeviceReqDTO deviceReqDTO) {
         Device device = new Device();
         try{
-//            device = deviceDao.getOneById(deviceReqDTO.getId());
             BeanUtils.copyProperties(deviceReqDTO,device);
             deviceDao.update(device);
 
@@ -111,6 +109,7 @@ public class DeviceServiceImpl implements DeviceService {
 
         for(int i=0;i<deviceExcelDTOList.size();i++){
             List<String> rowData = new ArrayList<>();
+            // 依次获取对应列的数据
             for (String h:head){
                 Field t = clazz.getDeclaredField(h);
                 t.setAccessible(true);

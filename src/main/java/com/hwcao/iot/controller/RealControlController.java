@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author: dyingstraw
  * @create: 2019-07-07 22:00
  **/
+
 @RestController
 @RequestMapping("/api/real")
 public class RealControlController {

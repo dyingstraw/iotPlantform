@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * @create: 2019-07-09 14:20
  **/
 @Controller
-@RequestMapping("/webview/{path}")
+//@RequestMapping("/webview/{path}")
 public class WebViewController {
 
     @RequestMapping("/webview/{path}")
